@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "radar-84522": {
+      "hosting": {
+        "radar": [
+          "radar-84522"
+        ]
+      }
+    }
+  }
+}

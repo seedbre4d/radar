@@ -1,0 +1,26 @@
+<div class="app-background full-height" fxLayout="column" fxLayoutGap="32px" fxLayoutAlign="center center">
+    <div style="height: 80%;" fxLayout="column" fxLayoutGap="128px" fxLayoutAlign="start center">
+        <span style="font-size: 4em; font-weight: bold;">The flight to freedom</span>
+        <mat-card style="width: 200px; height: auto; ">
+            <form #form="ngForm" (ngSubmit)="login(form)" fxLayout="column" fxLayoutGap="4px">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput [(ngModel)]="email" name="email" type="email" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput [(ngModel)]="password" name="password" type="password" required>
+                </mat-form-field>
+                <mat-error [style.opacity]="invalidCredentials ? 1 : 0" color="warn">Invalid credentials</mat-error>
+                <button mat-button type="submit">
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <span *ngIf="!(loading$ | async)">Login</span>
+                        <mat-spinner [diameter]="25" *ngIf="loading$ | async"></mat-spinner>
+                        <span *ngIf="loading$ | async" style="opacity: 0;">.</span>
+                    </div>
+                </button>
+                <button mat-button type="button" (click)="register()">Register</button>
+            </form>
+        </mat-card>
+    </div>
+</div>

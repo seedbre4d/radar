@@ -1,0 +1,44 @@
+<div fxLayout="column" fxLayoutGap="32px" style="width: 250px;">
+	<div fxLayout="column" fxLayoutGap="4px">
+		<span class="mat-display-1"> List </span>
+		<mat-divider></mat-divider>
+		<mat-list role="list">
+			<mat-list-item *ngFor="let elem of data | async" role="listitem" style="height: 100px;">
+				<div fxLayout="column" class="full-width" style="height: 100px;" fxLayoutGap="4px">
+					<span>First name: {{elem.firstName}}</span>
+					<span>Last name: {{elem.lastName}}</span>
+
+					<div fxLayout="row" fxLayoutAlign="space-between center">
+						<button (click)="edit(elem)" mat-button [color]="item.id === elem.id ? 'accent' : ''">
+							Edit
+						</button>
+						<button (click)="delete(elem.id)" mat-button color="warn">
+							Delete
+						</button>
+					</div>
+				</div>
+				<mat-divider></mat-divider>
+			</mat-list-item>
+		</mat-list>
+	</div>
+
+	<div fxLayout="column" fxLayoutGap="4px">
+		<div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="8px">
+			<span class="mat-display-1"> {{item?.id ? 'Edit' : 'Add' }} </span>
+			<button mat-button (click)="switchToAdd(form)" *ngIf="item?.id"> Switch to Add </button>
+		</div>
+		<mat-divider></mat-divider>
+
+		<form #form="ngForm" (ngSubmit)="save(form)" fxLayout="column">
+			<mat-form-field>
+				<mat-label>First name</mat-label>
+				<input matInput required [(ngModel)]="item.firstName" name="firstName">
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>Last name</mat-label>
+				<input matInput [(ngModel)]="item.lastName" name="lastName">
+			</mat-form-field>
+			<button mat-button type="submit">Save</button>
+		</form>
+	</div>
+</div>
